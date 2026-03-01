@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مواد تنظيف | متجر النظافة الأفضل</title>
+  <!-- Google Fonts (Cairo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Swiper CSS (أحدث إصدار) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f4f7fc;
+      color: #1e2b37;
+      line-height: 1.6;
+      direction: rtl;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* الهيدر */
+    header {
+      background: linear-gradient(135deg, #0a4d7a, #0b6b9e);
+      color: white;
+      padding: 1.2rem 0;
+      box-shadow: 0 6px 18px rgba(0, 40, 70, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo i {
+      color: #ffd966;
+      font-size: 2.2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: 0.3s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: #ffd966;
+      color: #ffd966;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      background-blend-mode: overlay;
+      background-color: #3a6b92;
+      color: white;
+      padding: 5rem 0;
+      text-align: center;
+      margin-bottom: 3rem;
+      border-radius: 0 0 50px 50px;
+      box-shadow: inset 0 0 0 1000px rgba(6, 50, 80, 0.75);
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      max-width: 750px;
+      margin: 0 auto 2rem;
+      opacity: 0.95;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #f0c14b;
+      color: #1e2b37;
+      padding: 0.9rem 2.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: 0.3s;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn i {
+      margin-right: 8px;
+    }
+
+    .btn:hover {
+      background-color: #ffda7c;
+      transform: translateY(-4px);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.25);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #0a4d7a;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .section-title::after {
+      content: "";
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(to left, #0a4d7a, #4a9fd8);
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      transform: translateX(50%);
+      border-radius: 4px;
+    }
+
+    /* ========== السلايدر المحسّن ========== */
+    .swiper {
+      width: 100%;
+      padding: 20px 10px 60px 10px;
+      margin: 2rem 0 3rem;
+      border-radius: 30px;
+      background: transparent;
+      overflow: visible; /* مهم لكي تظهر الأزرار خارجياً بشكل أفضل */
+    }
+
+    .swiper-wrapper {
+      padding: 10px 0 20px 0;
+    }
+
+    .swiper-slide {
+      height: auto;
+      display: flex;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+    }
+
+    /* حاوية كل 3 بطاقات داخل الشريحة - تظل Grid */
+    .slide-content {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+      direction: rtl;
+    }
+
+    /* بطاقة المنتج */
+    .product-card {
+      background: white;
+      border-radius: 30px 30px 20px 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 30, 50, 0.1);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #d9e9f5;
+      height: 100%;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 30px 50px rgba(7, 60, 100, 0.25);
+      border-color: #a0c9e9;
+    }
+
+    .product-img {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 10px;
+    }
+
+    .badge {
+      background: #ffb347;
+      color: #1d2c3a;
+      font-weight: 700;
+      padding: 0.3rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .badge i {
+      font-size: 0.8rem;
+    }
+
+    .product-info {
+      padding: 1.5rem 1.2rem 1.5rem;
+      background: white;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #124263;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-desc {
+      color: #3e5a6b;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      flex-grow: 1;
+    }
+
+    .product-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+      border-top: 1px solid #e1eef9;
+      padding-top: 1rem;
+    }
+
+    .price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #0a4d7a;
+    }
+
+    .price small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #5885a5;
+    }
+
+    .add-to-cart {
+      background: #0a4d7a;
+      border: none;
+      color: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 6px 12px rgba(7, 70, 120, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .add-to-cart:hover {
+      background: #1273b3;
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    /* أزرار السلايدر - تصميم واضح جداً */
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: white;
+      background: #0a4d7a;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 10px 20px rgba(0, 30, 70, 0.4);
+      transition: 0.25s;
+      border: 2px solid white;
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background: #127bbd;
+      transform: scale(1.15);
+      border-color: #ffd966;
+    }
+
+    .swiper-pagination-bullet {
+      background: #bfd9f0;
+      opacity: 1;
+      width: 14px;
+      height: 14px;
+      transition: 0.2s;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #0a4d7a;
+      width: 30px;
+      border-radius: 10px;
+    }
+
+    /* قسم المميزات */
+    .features {
+      background: white;
+      border-radius: 60px 60px 30px 30px;
+      padding: 3rem 1.5rem;
+      margin: 4rem 0;
+      box-shadow: 0 10px 30px rgba(0, 30, 50, 0.05);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.5rem;
+      text-align: center;
+    }
+
+    .feature-item i {
+      font-size: 3rem;
+      color: #0f6b9e;
+      background: #e1f0fa;
+      padding: 1.3rem;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .feature-item h4 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-item p {
+      color: #365f7a;
+    }
+
+    /* الفوتر */
+    footer {
+      background: #0b3450;
+      color: #e0edf5;
+      padding: 2.5rem 0;
+      margin-top: 4rem;
+      border-radius: 60px 60px 0 0;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-info p {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    .footer-info i {
+      margin-left: 8px;
+      color: #ffcd7e;
+    }
+
+    .social a {
+      color: white;
+      font-size: 1.8rem;
+      margin-right: 1.2rem;
+      transition: 0.2s;
+      display: inline-block;
+    }
+
+    .social a:hover {
+      color: #f0c14b;
+      transform: scale(1.15);
+    }
+
+    /* عربة التسوق الثابتة */
+    .cart-fixed {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: #0a4d7a;
+      color: white;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 60, 110, 0.5);
+      cursor: pointer;
+      transition: 0.2s;
+      z-index: 99;
+      border: 3px solid #ffcd7e;
+    }
+
+    .cart-fixed:hover {
+      background: #126ead;
+      transform: scale(1.05);
+    }
+
+    .cart-fixed span {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #e63946;
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 40px;
+      border: 2px solid white;
+    }
+
+    /* استجابة للجوال */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .nav-links {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .hero h2 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .slide-content {
+        grid-template-columns: 1fr; /* بطاقة واحدة بالجوال */
+      }
+      .swiper-button-next, .swiper-button-prev {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <div class="logo">
+        <h1><i class="fas fa-pump-soap"></i> مواد تنظيف</h1>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="#">اتصل بنا</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>مواد تنظيف أصلية وبأفضل الأسعار</h2>
+      <p>نوفر لكم أجود مواد النظافة للمنزل والمكاتب والمنشآت. عناية فائقة بنظافة لا مثيل لها.</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <h2 class="section-title">منتجاتنا</h2>
+    
+    <!-- سلايدر محسّن يعمل 100% -->
+    <div class="swiper mySuperSwiper">
+      <div class="swiper-wrapper">
+        <!-- الشريحة الأولى (المنتجات 1,2,3) -->
+        <div class="swiper-slide">
+          <div class="slide-content">
+            <!-- بطاقة 1 -->
+            <div class="product-card" data-id="1">
+              <div class="product-img" >
+                <span class="badge"><i class="fas fa-star"></i> Basma</span>
+              </div>
+              <div class="product-info">
+                <h3 class="product-title"></h3>
+                <p class="product-desc"></p>
+                <div class="product-foot">
+                  <span class="price">1 <small>DT</small></span>
+                  <button class="add-to-cart" aria-label="أضف للسلة"><i class="fas fa-cart-plus"></i></button>
+                </div>
+              </div>
+            </div>
+            <!-- بطاقة 2 -->
+            <div class="product-card" data-id="2">
+              <div class="product-img" >
+                <span class="badge"><i class="fas fa-leaf"></i> Basma</span>
+              </div>
+              <div class="product-info">
+                <h3 class="product-title"></h3>
+                <p class="product-desc"></p>
+                <div class="product-foot">
+                  <span class="price">1 <small>DT</small></span>
+                  <button class="add-to-cart"><i class="fas fa-cart-plus"></i></button>
+                </div>
+              </div>
+            </div>
+            <!-- بطاقة 3 -->
+            <div class="product-card" data-id="3">
+              <div class="product-img" >
+                <span class="badge"><i class="fas fa-biohazard"></i> Basma</span>
+              </div>
+              <div class="product-info">
+                <h3 class="product-title"></h3>
+                <p class="product-desc"></p>
+                <div class="product-foot">
+                  <span class="price">1 <small>DT</small></span>
+                  <button class="add-to-cart"><i class="fas fa-cart-plus"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- الشريحة الثانية (المنتجات 4,5,6) -->
+        <div class="swiper-slide">
+          <div class="slide-content">
+            <!-- بطاقة 4 -->
+            <div class="product-card" data-id="4">
+              <div class="product-img" >
+                <span class="badge"><i class="fas fa-tint"></i> Basma</span>
+              </div>
+              <div class="product-info">
+                <h3 class="product-title"></h3>
+                <p class="product-desc"></p>
+                <div class="product-foot">
+                  <span class="price">1 <small>DT</small></span>
+                  <button class="add-to-cart"><i class="fas fa-cart-plus"></i></button>
+                </div>
+              </div>
+            </div>
+            <!-- بطاقة 5 -->
+            <div class="product-card" data-id="5">
+              <div class="product-img" >
+                <span class="badge"><i class="fas fa-wind"></i> Basma</span>
+              </div>
+              <div class="product-info">
+                <h3 class="product-title"></h3>
+                <p class="product-desc"></p>
+                <div class="product-foot">
+                  <span class="price">1 <small>DT</small></span>
+                  <button class="add-to-cart"><i class="fas fa-cart-plus"></i></button>
+                </div>
+              </div>
+            </div>
+            <!-- بطاقة 6 -->
+            <div class="product-card" data-id="6">
+              <div class="product-img" >
+                <span class="badge"><i class="fas fa-bolt"></i> Basma</span>
+              <div class="product-info">
+                <h3 class="product-title"></h3>
+                <p class="product-desc"></p>
+                <div class="product-foot">
+                  <span class="price">1 <small>DT</small></span>
+                  <button class="add-to-cart"><i class="fas fa-cart-plus"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- يمكنك إضافة المزيد من الشرائح بسهولة -->
+      </div>
+      <!-- أزرار التنقل -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <!-- قسم المميزات -->
+    <div class="features">
+      <h2 class="section-title">نضمن لكم:</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="fas fa-truck"></i>
+          <h4>توصيل سريع</h4>
+          <p>شحن خلال 24 ساعة إلى باب المنزل</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-certificate"></i>
+          <h4>جودة مضمونة</h4>
+          <p>منتجات أصلية ومعتمدة</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h4>عروض حصرية</h4>
+          <p>خصومات تصل إلى 40%</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-headset"></i>
+          <h4>دعم فني</h4>
+          <p>فريق متاح 24/7</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- أيقونة السلة -->
+  <div class="cart-fixed" id="cartFixed">
+    <i class="fas fa-cart-shopping"></i>
+    <span>0</span>
+  </div>
+
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-info">
+        <p><i class="fas fa-map-pin"></i> برج سدريا</p>
+        <p><i class="fas fa-phone-alt"></i> +216 28195170</p>
+        <p><i class="fas fa-envelope"></i> inochembasma@gmail.com</p>
+      </div>
+      <div class="social">
+        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="انستغرام"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="container" style="text-align: center; margin-top: 2rem; font-size: 0.95rem; opacity: 0.8;">
+      © 2025 متجر مواد تنظيف - جميع الحقوق محفوظة.
+    </div>
+  </footer>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- سكربت محسّن وموثوق للسلايدر وعربة التسوق -->
+  <script>
+    (function() {
+      // 1. تهيئة السلايدر بطريقة آمنة (بعد تحميل DOM)
+      function initSwiper() {
+        // التأكد من أن Swiper معرف
+        if (typeof Swiper === 'undefined') {
+          console.error('Swiper library not loaded!');
+          return;
+        }
+
+        // قم بتدمير أي مثيل سابق إذا كان موجوداً (للأمان)
+        const swiperContainer = document.querySelector('.mySuperSwiper');
+        if (swiperContainer && swiperContainer.swiper) {
+          swiperContainer.swiper.destroy(true, true);
+        }
+
+        // إنشاء سلايدر جديد بإعدادات قوية
+        const swiper = new Swiper('.mySuperSwiper', {
+          // المعاملات الأساسية
+          slidesPerView: 1,
+          spaceBetween: 20,
+          loop: true,            // تكرار لا نهائي
+          speed: 600,            // سرعة الانتقال (ملي ثانية)
+          grabCursor: true,
+          
+          // التنقل بالسهام
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          
+          // النقاط السفلية
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+          },
+          
+          // تحسين للجوال والتابلت
+          breakpoints: {
+            320: { slidesPerView: 1, spaceBetween: 10 },
+            640: { slidesPerView: 1, spaceBetween: 15 },
+          },
+          
+          // تفعيل السحب باللمس
+          touchRatio: 1.5,
+          longSwipes: true,
+          
+          // لمنع المشاكل مع RTL
+          rtl: true,  // لأن اتجاه الصفحة RTL
+        });
+
+        // إضافة بعض الأحداث للتحقق (اختياري)
+        swiper.on('slideChange', function () {
+          console.log('شريحة تغيرت إلى: ', swiper.realIndex);
+        });
+
+        return swiper;
+      }
+
+      // تنفيذ بعد تحميل الصفحة بالكامل
+      window.addEventListener('load', function() {
+        initSwiper();
+      });
+
+      // 2. تفعيل أزرار "أضف للسلة" وتحديث العداد
+      const cartSpan = document.querySelector('#cartFixed span');
+      let cartCount = 0;
+
+      function updateCart(btn) {
+        // تغيير مؤقت للزر
+        const icon = btn.querySelector('i');
+        const originalClass = icon.className;
+        icon.className = 'fas fa-check';
+        btn.style.backgroundColor = '#2e7d32';
+        btn.style.transform = 'scale(1.1)';
+        
+        // زيادة العداد
+        cartCount += 1;
+        if (cartSpan) {
+          cartSpan.textContent = cartCount;
+        }
+
+        // رسالة صغيرة (اختياري)
+        // يمكنك إظهار تلميح بسيط
+
+        // إعادة الزر لحالته بعد 800 مللي
+        setTimeout(() => {
+          icon.className = originalClass;
+          btn.style.backgroundColor = '#0a4d7a';
+          btn.style.transform = '';
+        }, 800);
+      }
+
+      // استخدم event delegation لضمان عمل الأزرار حتى بعد إعادة التهيئة (إن حصلت)
+      document.body.addEventListener('click', function(e) {
+        const addButton = e.target.closest('.add-to-cart');
+        if (addButton) {
+          e.preventDefault();
+          e.stopPropagation();
+          updateCart(addButton);
+        }
+      });
+
+      // عربة التسوق الثابتة: رسالة ترحيبية
+      const cartFixed = document.getElementById('cartFixed');
+      if (cartFixed) {
+        cartFixed.addEventListener('click', function() {
+          alert(`🛒 لديك ${cartCount} منتج(ة) في سلة التسوق (واجهة تجريبية)`);
+        });
+      }
+
+      // أيقونات السلة تبدأ بصفر (موجودة في HTML 0)
+      if (cartSpan) {
+        cartSpan.textContent = '0';
+      }
+    })();
+  </script>
+  <!-- ملاحظة: جميع الصور من Unsplash وهي مناسبة للاستخدام التجاري -->
+</body>
+</html>
